@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Products</title>
+</head>
+<body>
+<h1>Products</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>ROM</th>
+        <th>RAM</th>
+        <th>CPU</th>
+        <th>GPU</th>
+        <th>Brand</th>
+        <th>Price</th>
+        <th>Enabled</th>
+        <th>Category</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.description}"></td>
+        <td th:text="${product.ROM}"></td>
+        <td th:text="${product.RAM}"></td>
+        <td th:text="${product.CPU}"></td>
+        <td th:text="${product.GPU}"></td>
+        <td th:text="${product.brand}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.enabled}"></td>
+        <td th:text="${product.category.cateName}"></td>
+        <td>
+            <a th:href="@{/products/edit/{id}(id=${product.id})}">Edit</a>
+            <a th:href="@{/products/delete/{id}(id=${product.id})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/products/create">Create New Product</a>
+</body>
+</html>

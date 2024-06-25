@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Menus</title>
+</head>
+<body>
+<h1>Menus</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>URL</th>
+        <th>Enabled</th>
+        <th>Parent</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="menu : ${menus}">
+        <td th:text="${menu.menuId}"></td>
+        <td th:text="${menu.name}"></td>
+        <td th:text="${menu.url}"></td>
+        <td th:text="${menu.enabled}"></td>
+        <td th:text="${menu.parent != null ? menu.parent.name : 'None'}"></td>
+        <td>
+            <a th:href="@{/menus/edit/{id}(id=${menu.menuId})}">Edit</a>
+            <a th:href="@{/menus/delete/{id}(id=${menu.menuId})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/menus/create">Create New Menu</a>
+</body>
+</html>

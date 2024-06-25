@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Create/Edit Menu</title>
+</head>
+<body>
+<h1 th:text="${menu.menuId != null} ? 'Edit Menu' : 'Create Menu'"></h1>
+<form th:action="@{/menus/save}" th:object="${menu}" method="post">
+    <input type="hidden" th:field="*{menuId}"/>
+    <label>Name:</label>
+    <input type="text" th:field="*{name}" required="required"/>
+    <br/>
+    <label>URL:</label>
+    <input type="text" th:field="*{url}" required="required"/>
+    <br/>
+    <label>Enabled:</label>
+    <input type="checkbox" th:field="*{enabled}"/>
+    <br/>
+    <label>Parent:</label>
+    <select th:field="*{parent}">
+        <option th:each="menu : ${menus}"
+                th:value="${menu}" th:text="${menu.name}"></option>
+    </select>
+    <br/>
+    <button type="submit">Save</button>
+</form>
+<a href="/menus">Back to List</a>
+</body>
+</html>

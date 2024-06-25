@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Create/Edit Product</title>
+</head>
+<body>
+<h1 th:text="${product.id != null} ? 'Edit Product' : 'Create Product'"></h1>
+<form th:action="@{/products/save}" th:object="${product}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+    <label>Name:</label>
+    <input type="text" th:field="*{name}" required="required"/>
+    <br/>
+    <label>Description:</label>
+    <textarea th:field="*{description}" required="required"></textarea>
+    <br/>
+    <label>ROM:</label>
+    <input type="text" th:field="*{ROM}" required="required"/>
+    <br/>
+    <label>RAM:</label>
+    <input type="text" th:field="*{RAM}" required="required"/>
+    <br/>
+    <label>CPU:</label>
+    <input type="text" th:field="*{CPU}" required="required"/>
+    <br/>
+    <label>GPU:</label>
+    <input type="text" th:field="*{GPU}" required="required"/>
+    <br/>
+    <label>Brand:</label>
+    <input type="text" th:field="*{brand}" required="required"/>
+    <br/>
+    <label>Price:</label>
+    <input type="number" th:field="*{price}" step="0.01" required="required"/>
+    <br/>
+    <label>Enabled:</label>
+    <input type="checkbox" th:field="*{enabled}"/>
+    <br/>
+    <label>Category:</label>
+    <select th:field="*{category}" required="required">
+        <option th:each="category : ${categories}"
+                th:value="${category}" th:text="${category.cateName}"></option>
+    </select>
+    <br/>
+    <button type="submit">Save</button>
+</form>
+<a href="/products">Back to List</a>
+</body>
+</html>
